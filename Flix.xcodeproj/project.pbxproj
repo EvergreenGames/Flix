@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A969A6B24A3C7CE0041FEAC /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A969A6A24A3C7CE0041FEAC /* MoviesViewController.m */; };
 		8AA213A424A3BB5900ADA926 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA213A324A3BB5900ADA926 /* AppDelegate.m */; };
 		8AA213A724A3BB5900ADA926 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA213A624A3BB5900ADA926 /* SceneDelegate.m */; };
 		8AA213AA24A3BB5900ADA926 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA213A924A3BB5900ADA926 /* ViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A969A6924A3C7CE0041FEAC /* MoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
+		8A969A6A24A3C7CE0041FEAC /* MoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 		8AA2139F24A3BB5900ADA926 /* Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA213A224A3BB5900ADA926 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8AA213A324A3BB5900ADA926 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 		8AA213A124A3BB5900ADA926 /* Flix */ = {
 			isa = PBXGroup;
 			children = (
+				8A969A6924A3C7CE0041FEAC /* MoviesViewController.h */,
+				8A969A6A24A3C7CE0041FEAC /* MoviesViewController.m */,
 				8AA213A224A3BB5900ADA926 /* AppDelegate.h */,
 				8AA213A324A3BB5900ADA926 /* AppDelegate.m */,
 				8AA213A524A3BB5900ADA926 /* SceneDelegate.h */,
@@ -269,6 +274,7 @@
 			files = (
 				8AA213AA24A3BB5900ADA926 /* ViewController.m in Sources */,
 				8AA213A424A3BB5900ADA926 /* AppDelegate.m in Sources */,
+				8A969A6B24A3C7CE0041FEAC /* MoviesViewController.m in Sources */,
 				8AA213B524A3BB5900ADA926 /* main.m in Sources */,
 				8AA213A724A3BB5900ADA926 /* SceneDelegate.m in Sources */,
 			);
