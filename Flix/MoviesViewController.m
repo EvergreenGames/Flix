@@ -10,6 +10,7 @@
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
+#import "MBProgressHUD.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -28,6 +29,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchMovieList];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -37,6 +39,7 @@
 }
 
 - (void) fetchMovieList {
+    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -54,9 +57,9 @@
                
                [self.tableView reloadData];
            }
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.refreshControl endRefreshing];
-       }];
+    }];
     [task resume];
 }
 

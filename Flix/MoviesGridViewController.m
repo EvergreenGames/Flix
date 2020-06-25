@@ -9,6 +9,7 @@
 #import "MoviesGridViewController.h"
 #import "PosterCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "MBProgressHUD.h"
 
 @interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray* movies;
@@ -23,6 +24,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchMovieList];
     
     UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
@@ -38,6 +40,7 @@
 }
 
 - (void) fetchMovieList {
+    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -52,6 +55,7 @@
 
            }
         [self.collectionView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
        }];
     [task resume];
 }
