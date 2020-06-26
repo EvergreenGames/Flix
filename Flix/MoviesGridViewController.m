@@ -50,8 +50,9 @@
                NSLog(@"%@", [error localizedDescription]);
                UIAlertController* errorPopup = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedDescription] preferredStyle:(UIAlertControllerStyleAlert)];
                
-               UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                   //Dismiss
+               UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                   [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                   [self fetchMovieList];
                }];
                
                [errorPopup addAction:okAction];
