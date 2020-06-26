@@ -80,13 +80,34 @@
     NSDictionary* movie = self.movies[indexPath.item];
 
     NSString* baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString* baseURLString_small = @"https://image.tmdb.org/t/p/w45";
     NSString* posterURLString = movie[@"poster_path"];
     NSString* fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+    NSString* fullPosterURLString_small = [baseURLString_small stringByAppendingString:posterURLString];
     
     NSURL* posterURL = [NSURL URLWithString:fullPosterURLString];
+    NSURL* posterURL_small = [NSURL URLWithString:fullPosterURLString_small];
     
-    cell.posterImageView.image = nil;
-    [cell.posterImageView setImageWithURL:posterURL];
+    NSURLRequest* requestSmall = [NSURLRequest requestWithURL:posterURL_small];
+    
+    [cell.posterImageView setImageWithURLRequest:requestSmall placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+        cell.posterImageView.alpha = 0.0;
+        cell.posterImageView.image = image;
+        
+        if(response != nil){
+            [UIView animateWithDuration:0.3 animations:^{
+                cell.posterImageView.alpha = 1.0;
+            } completion:^(BOOL finished) {
+                [cell.posterImageView setImageWithURL:posterURL];
+            }];
+        }
+        else{
+            cell.posterImageView.alpha = 1.0;
+            [cell.posterImageView setImageWithURL:posterURL];
+        }
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+        [cell.posterImageView setImageWithURL:posterURL];
+    }];
     
     return cell;
 }

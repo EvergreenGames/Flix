@@ -64,9 +64,6 @@
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 
                self.movies = dataDictionary[@"results"];
-               for(NSDictionary* movie in self.movies){
-                   NSLog(@"%@", movie[@"title"]);
-               }
                
                [self.tableView reloadData];
            }
@@ -88,13 +85,34 @@
     cell.descLabel.text = movie[@"overview"];
 
     NSString* baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString* baseURLString_small = @"https://image.tmdb.org/t/p/w45";
     NSString* posterURLString = movie[@"poster_path"];
     NSString* fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+    NSString* fullPosterURLString_small = [baseURLString_small stringByAppendingString:posterURLString];
     
     NSURL* posterURL = [NSURL URLWithString:fullPosterURLString];
+    NSURL* posterURL_small = [NSURL URLWithString:fullPosterURLString_small];
     
-    cell.coverImageView.image = nil;
-    [cell.coverImageView setImageWithURL:posterURL];
+    NSURLRequest* requestSmall = [NSURLRequest requestWithURL:posterURL_small];
+    
+    [cell.coverImageView setImageWithURLRequest:requestSmall placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+        cell.coverImageView.alpha = 0.0;
+        cell.coverImageView.image = image;
+        
+        if(response != nil){
+            [UIView animateWithDuration:0.3 animations:^{
+                cell.coverImageView.alpha = 1.0;
+            } completion:^(BOOL finished) {
+                [cell.coverImageView setImageWithURL:posterURL];
+            }];
+        }
+        else{
+            cell.coverImageView.alpha = 1.0;
+            [cell.coverImageView setImageWithURL:posterURL];
+        }
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+        [cell.coverImageView setImageWithURL:posterURL];
+    }];
     
     return cell;
 }

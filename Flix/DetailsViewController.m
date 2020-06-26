@@ -30,11 +30,40 @@
     NSString* fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     
     NSURL* posterURL = [NSURL URLWithString:fullPosterURLString];
+    NSURLRequest* posterRequest = [NSURLRequest requestWithURL:posterURL];
+    
+    [self.posterImageView setImageWithURLRequest:posterRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+        self.posterImageView.alpha = 0.0;
+        self.posterImageView.image = image;
+        
+        if(response != nil){
+        [UIView animateWithDuration:0.3 animations:^{
+            self.posterImageView.alpha = 1.0;
+        }];
+        }
+        else self.posterImageView.alpha = 1.0;
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+        NSLog(@"Failed to load poster Image");
+    }];
     
     NSString* bgURLString = self.movie[@"backdrop_path"];
     NSString* fullBgURLString = [baseURLString stringByAppendingString:bgURLString];
     
     NSURL* bgURL = [NSURL URLWithString:fullBgURLString];
+    NSURLRequest* bgRequest = [NSURLRequest requestWithURL:bgURL];
+    [self.backgroundImageView setImageWithURLRequest:bgRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+        self.backgroundImageView.alpha = 0.0;
+        self.backgroundImageView.image = image;
+        
+        if(response != nil){
+        [UIView animateWithDuration:0.3 animations:^{
+            self.backgroundImageView.alpha = 1.0;
+        }];
+        }
+        else self.backgroundImageView.alpha = 1.0;
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+        NSLog(@"Failed to load BG Image");
+    }];
     
     [self.posterImageView setImageWithURL:posterURL];
     [self.backgroundImageView setImageWithURL:bgURL];
@@ -57,7 +86,6 @@
     TrailerViewController* trailerController = [segue destinationViewController];
     
     trailerController.movieID = [self.movie[@"id"] stringValue];
-    //NSLog(@"%@", [self.movie[@"id"] class]);
 }
 
 
