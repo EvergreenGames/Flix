@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -79,6 +80,14 @@
     [self.descLabel sizeToFit];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    CGRect contentRect = CGRectZero;
+
+    for (UIView *view in self.scrollView.subviews) {
+        contentRect = CGRectUnion(contentRect, view.frame);
+    }
+    self.scrollView.contentSize = contentRect.size;
+}
 
 #pragma mark - Navigation
 
