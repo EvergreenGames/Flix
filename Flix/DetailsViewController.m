@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
 @end
 
@@ -70,8 +72,10 @@
     self.titleLabel.text = self.movie[@"title"];
     self.dateLabel.text = self.movie[@"release_date"];
     self.descLabel.text = self.movie[@"overview"];
+    self.navLabel.title = self.movie[@"title"];
+    self.ratingLabel.text = [self.movie[@"vote_average"] stringValue];
     
-    [self.titleLabel sizeToFit];
+    //[self.titleLabel sizeToFit];
     [self.descLabel sizeToFit];
 }
 

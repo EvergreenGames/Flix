@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movies-->
+        <!--Flix-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MoviesViewController" sceneMemberID="viewController">
@@ -63,7 +63,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movies" id="5Ja-vr-T3D"/>
+                    <navigationItem key="navigationItem" title="Flix" id="5Ja-vr-T3D"/>
                     <connections>
                         <outlet property="tableView" destination="fow-db-fps" id="RVq-9u-7aR"/>
                     </connections>
@@ -80,6 +80,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KWs-ID-uRg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="eXx-Ja-Voj" kind="relationship" relationship="rootViewController" id="ybb-2z-HNA"/>
@@ -141,7 +145,7 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="849.77678571428567"/>
         </scene>
-        <!--Details View Controller-->
+        <!--Title-->
         <scene sceneID="Mvk-VF-i7M">
             <objects>
                 <viewController id="8q8-X0-tRS" customClass="DetailsViewController" sceneMemberID="viewController">
@@ -153,10 +157,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIl-xM-VaR">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V8M-JT-hqf">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="231"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIl-xM-VaR">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="231"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tfb-5c-0Be">
                                         <rect key="frame" x="15" y="159" width="132" height="197"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,7 +176,7 @@
                                             <outletCollection property="gestureRecognizers" destination="RL0-ps-WwO" appends="YES" id="HnX-Gc-Z2x"/>
                                         </connections>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yy4-6E-VAo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yy4-6E-VAo">
                                         <rect key="frame" x="155" y="239" width="251" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
@@ -180,12 +191,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1Z-eq-cDn">
-                                        <rect key="frame" x="155" y="299" width="251" height="24"/>
+                                        <rect key="frame" x="155" y="283" width="163" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCG-Mc-VpT">
+                                        <rect key="frame" x="356" y="283" width="50" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="hand.thumbsup.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6xe-LT-VdV">
+                                        <rect key="frame" x="326" y="283" width="22" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="YWz-P3-YBH"/>
@@ -195,12 +218,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="0j3-a4-bbN"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UIM-R2-esC"/>
+                    <navigationItem key="navigationItem" title="Title" id="UIM-R2-esC"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="pIl-xM-VaR" id="1N8-9y-zcc"/>
                         <outlet property="dateLabel" destination="h1Z-eq-cDn" id="MBb-va-4Kf"/>
                         <outlet property="descLabel" destination="9rb-j2-gWy" id="kHv-6h-xQt"/>
+                        <outlet property="navLabel" destination="UIM-R2-esC" id="dJ6-Vd-aZC"/>
                         <outlet property="posterImageView" destination="tfb-5c-0Be" id="5EY-ri-bdR"/>
+                        <outlet property="ratingLabel" destination="gCG-Mc-VpT" id="9hP-wZ-5G6"/>
                         <outlet property="titleLabel" destination="yy4-6E-VAo" id="6fV-Y1-v25"/>
                     </connections>
                 </viewController>
@@ -211,7 +236,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2348" y="449"/>
+            <point key="canvasLocation" x="2347.826086956522" y="448.66071428571428"/>
         </scene>
         <!--Trailer View Controller-->
         <scene sceneID="3mF-1r-WQv">
@@ -269,6 +294,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZRa-f9-705">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -281,9 +310,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OnW-0r-XuE"/>
+        <segue reference="5dh-kN-9aC"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="124"/>
         <image name="now_playing_tabbar_item" width="21" height="21"/>
         <image name="superhero_tabbar_item" width="21" height="23"/>
     </resources>

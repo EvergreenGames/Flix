@@ -28,7 +28,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+        
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchMovieList];
     
@@ -36,6 +36,11 @@
     [self.refreshControl addTarget:self action:@selector(fetchMovieList) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
 - (void) fetchMovieList {
