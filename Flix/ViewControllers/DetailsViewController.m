@@ -28,12 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSString* baseURLString = @"https://image.tmdb.org/t/p/w500";
-    NSString* posterURLString = self.movie[@"poster_path"];
-    NSString* fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
-    
-    NSURL* posterURL = [NSURL URLWithString:fullPosterURLString];
-    NSURLRequest* posterRequest = [NSURLRequest requestWithURL:posterURL];
+    NSURLRequest* posterRequest = [NSURLRequest requestWithURL:self.movie.posterURL];
     
     [self.posterImageView setImageWithURLRequest:posterRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
         self.posterImageView.alpha = 0.0;
@@ -49,11 +44,7 @@
         NSLog(@"Failed to load poster Image");
     }];
     
-    NSString* bgURLString = self.movie[@"backdrop_path"];
-    NSString* fullBgURLString = [baseURLString stringByAppendingString:bgURLString];
-    
-    NSURL* bgURL = [NSURL URLWithString:fullBgURLString];
-    NSURLRequest* bgRequest = [NSURLRequest requestWithURL:bgURL];
+    NSURLRequest* bgRequest = [NSURLRequest requestWithURL:self.movie.bgURL];
     [self.backgroundImageView setImageWithURLRequest:bgRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
         self.backgroundImageView.alpha = 0.0;
         self.backgroundImageView.image = image;
@@ -68,13 +59,11 @@
         NSLog(@"Failed to load BG Image");
     }];
     
-    [self.posterImageView setImageWithURL:posterURL];
-    [self.backgroundImageView setImageWithURL:bgURL];
-    self.titleLabel.text = self.movie[@"title"];
-    self.dateLabel.text = self.movie[@"release_date"];
-    self.descLabel.text = self.movie[@"overview"];
-    self.navLabel.title = self.movie[@"title"];
-    self.ratingLabel.text = [self.movie[@"vote_average"] stringValue];
+    self.titleLabel.text = self.movie.title;
+    self.dateLabel.text = self.movie.dateString;
+    self.descLabel.text = self.movie.desc;
+    self.navLabel.title = self.movie.title;
+    self.ratingLabel.text = [NSString stringWithFormat:@"%d",self.movie.rating];
     
     //[self.titleLabel sizeToFit];
     [self.descLabel sizeToFit];
@@ -98,7 +87,7 @@
     
     TrailerViewController* trailerController = [segue destinationViewController];
     
-    trailerController.movieID = [self.movie[@"id"] stringValue];
+    trailerController.movieID = self.movie.movieID;
 }
 
 

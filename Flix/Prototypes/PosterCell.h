@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PosterCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
+
+@property (nonatomic, strong) Movie* movie;
 
 @end
 
